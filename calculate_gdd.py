@@ -39,13 +39,11 @@ def main(met_dir, odir, land_sea_fname):
             tmax = tair[i:i+8,:,:].max(axis=0)
             gdd[yr_cnt,:,:] += np.where(tmax > theshold, tmax - theshold, 0.0)
 
-
     gdd = gdd.mean(axis=0)
     gdd = np.where(sea_mask == 0, gdd, -999.9)
 
     ofile = open(os.path.join(odir, "gdd.bin"), "w")
     gdd.tofile(ofile)
-
 
 def get_land_sea_mask(fname):
     nrows = 67

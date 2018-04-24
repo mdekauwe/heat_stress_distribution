@@ -20,7 +20,6 @@ def main(met_dir, odir, land_sea_fname):
 
     sea_mask = get_land_sea_mask(land_sea_fname)
 
-    theshold = 37.0
     st_yr = 1970
     en_yr = 1980
     nyears = (en_yr - st_yr) + 1
@@ -39,7 +38,6 @@ def main(met_dir, odir, land_sea_fname):
 
     ofile = open(os.path.join(odir, "map.bin"), "w")
     map.tofile(ofile)
-
 
 def get_land_sea_mask(fname):
     nrows = 67

@@ -23,13 +23,13 @@ def main(met_dir, odir, land_sea_fname):
 
     theshold = 37.0
     st_yr = 1970
-    en_yr = 1980# + 1
-    nyears = en_yr - st_yr
+    en_yr = 1980
+    nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83
     gdd = np.zeros((nyears,nrows,ncols))
 
-    for year in range(st_yr, en_yr):
+    for year in range(st_yr, en_yr+1):
         print(year)
 
         fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrMap.%d.nc" % (year))
@@ -43,9 +43,11 @@ def main(met_dir, odir, land_sea_fname):
     gdd = gdd.mean(axis=0)
     gdd_plot = np.where(sea_mask == 0, gdd, np.nan)
     gdd = np.where(sea_mask == 0, gdd, -999.9)
+
     plt.imshow(gdd_plot)
     plt.colorbar()
     plt.show()
+
     ofile = open(os.path.join(odir, "gdd.bin"), "w")
     gdd.tofile(ofile)
 

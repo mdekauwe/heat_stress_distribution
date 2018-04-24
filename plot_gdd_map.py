@@ -14,7 +14,8 @@ import sys
 import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
-
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from scipy.stats import pearsonr
 
 def main(input_dir):
 
@@ -46,7 +47,6 @@ def main(input_dir):
     ax1 = fig.add_subplot(121)
     ax2 = fig.add_subplot(122)
 
-    from mpl_toolkits.axes_grid1 import make_axes_locatable
 
     ax1.set_title("GDD")
     im1 = ax1.imshow(gdd, interpolation='None')
@@ -59,11 +59,13 @@ def main(input_dir):
     divider = make_axes_locatable(ax2)
     cax = divider.append_axes('right', size='5%', pad=0.05)
     fig.colorbar(im2, cax=cax, orientation='vertical');
-
-
     plt.show()
 
 
+    x = gdd[~np.isnan(gdd)]
+    y = map[~np.isnan(map)]
+    (r,p) = pearsonr(x,y)
+    print(r, p)
 
 if __name__ == "__main__":
 

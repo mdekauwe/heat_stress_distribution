@@ -25,15 +25,17 @@ def main(met_dir, odir, land_sea_fname):
     nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83
-    map = np.zeros((nyears,nrows,ncols))
+    map = np.zeros((nrows,ncols))
 
+    yr_cnt = 0
     for year in range(st_yr, en_yr+1):
         print(year)
         fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrMap.%d.nc" % (year))
         tair, time_steps = open_file(fname)
         map += tair.mean(axis=0)
-
-    map = map.mean(axis=0)
+        yr_cnt += 1
+        
+    map /= float(yr_cnt)
     map = np.where(sea_mask == 0, map, -999.9)
 
     ofile = open(os.path.join(odir, "map.bin"), "w")

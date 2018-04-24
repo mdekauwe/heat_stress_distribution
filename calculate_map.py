@@ -35,12 +35,7 @@ def main(met_dir, odir, land_sea_fname):
         map += tair.mean(axis=0)
 
     map = map.mean(axis=0)
-    map_plot = np.where(sea_mask == 0, map, np.nan)
     map = np.where(sea_mask == 0, map, -999.9)
-
-    plt.imshow(map_plot)
-    plt.colorbar()
-    plt.show()
 
     ofile = open(os.path.join(odir, "map.bin"), "w")
     map.tofile(ofile)

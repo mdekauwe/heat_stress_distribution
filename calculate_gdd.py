@@ -41,12 +41,7 @@ def main(met_dir, odir, land_sea_fname):
 
 
     gdd = gdd.mean(axis=0)
-    gdd_plot = np.where(sea_mask == 0, gdd, np.nan)
     gdd = np.where(sea_mask == 0, gdd, -999.9)
-
-    plt.imshow(gdd_plot)
-    plt.colorbar()
-    plt.show()
 
     ofile = open(os.path.join(odir, "gdd.bin"), "w")
     gdd.tofile(ofile)

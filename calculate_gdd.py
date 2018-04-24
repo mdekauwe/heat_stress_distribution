@@ -23,7 +23,7 @@ def main(met_dir, odir, land_sea_fname):
 
     theshold = 37.0
     st_yr = 1970
-    en_yr = 1980
+    en_yr = 2010
     nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83

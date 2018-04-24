@@ -21,7 +21,7 @@ def main(met_dir, odir, land_sea_fname):
     sea_mask = get_land_sea_mask(land_sea_fname)
 
     st_yr = 1970
-    en_yr = 1980
+    en_yr = 2010
     nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83
@@ -34,7 +34,7 @@ def main(met_dir, odir, land_sea_fname):
         tair, time_steps = open_file(fname)
         map += tair.mean(axis=0)
         yr_cnt += 1
-        
+
     map /= float(yr_cnt)
     map = np.where(sea_mask == 0, map, -999.9)
 

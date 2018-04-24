@@ -27,23 +27,18 @@ def main(met_dir, odir, land_sea_fname):
     nyears = en_yr - st_yr
     nrows = 67
     ncols = 83
-
     gdd = np.zeros((nyears,nrows,ncols))
-    yr_cnt = 0
+
     for year in range(st_yr, en_yr):
         print(year)
+
         fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrMap.%d.nc" % (year))
         tair, time_steps = open_file(fname)
 
-        day_cnt = 0
         for i in range(0, time_steps, 8):
             tmax = tair[i:i+8,:,:].max(axis=0)
             gdd[yr_cnt,:,:] += np.where(tmax > theshold, tmax - theshold, 0.0)
 
-            day_cnt += 1
-
-        gdd[yr_cnt,:,:] /= float(day_cnt)
-        yr_cnt += 1
 
     gdd = gdd.mean(axis=0)
     gdd = np.where(sea_mask == 0, gdd, np.nan)

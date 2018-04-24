@@ -38,7 +38,7 @@ def main(met_dir, odir, land_sea_fname):
     map_plot = np.where(sea_mask == 0, map, np.nan)
     map = np.where(sea_mask == 0, map, -999.9)
 
-    plt.imshow(map)
+    plt.imshow(map_plot)
     plt.colorbar()
     plt.show()
 

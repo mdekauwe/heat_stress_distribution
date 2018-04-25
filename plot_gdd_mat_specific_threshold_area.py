@@ -15,7 +15,7 @@ import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from scipy.stats import linregress
+from scipy.stats import pearsonr
 
 def main(input_dir):
 
@@ -30,8 +30,14 @@ def main(input_dir):
     gdd = np.where(gdd < -900.0, np.nan, gdd)
     mat = np.where(mat < -900.0, np.nan, mat)
 
-    width = 9
-    height = 6
+    # just plot a certain bit
+    gdd = np.where(mat <= 22.0, gdd, np.nan)
+    gdd = np.where(gdd >= 100.0, gdd, np.nan)
+    mat = np.where(mat <= 22.0, mat, np.nan)
+    mat = np.where(gdd >= 100.0, mat, np.nan)
+
+    width = 14
+    height = 5
     fig = plt.figure(figsize=(width, height))
     fig.subplots_adjust(hspace=0.1)
     fig.subplots_adjust(wspace=0.3)
@@ -44,23 +50,28 @@ def main(input_dir):
     plt.rcParams['xtick.labelsize'] = 14
     plt.rcParams['ytick.labelsize'] = 14
 
-    ax1 = fig.add_subplot(111)
+    ax1 = fig.add_subplot(121)
+    ax2 = fig.add_subplot(122)
 
 
-    x = mat[~np.isnan(mat)]
-    y = gdd[~np.isnan(gdd)]
-    x = x[y>50.]
-    y = y[y>50.]
+    ax1.set_title("GDD")
+    im1 = ax1.imshow(gdd, interpolation='None')
+    divider = make_axes_locatable(ax1)
+    cax = divider.append_axes('right', size='5%', pad=0.05)
+    fig.colorbar(im1, cax=cax, orientation='vertical')
 
-    slope, intercept, r_value, p_value, std_err = linregress(x,y)
-    print(r_value, p_value)
-
-    ax1.plot(x, y, "k.", alpha=0.1)
-    ax1.plot(x, intercept+(x*slope), "r-")
-    ax1.set_xlabel("MAT")
-    ax1.set_xlabel("GDD")
+    ax2.set_title("MAT")
+    im2 = ax2.imshow(mat, interpolation='None')
+    divider = make_axes_locatable(ax2)
+    cax = divider.append_axes('right', size='5%', pad=0.05)
+    fig.colorbar(im2, cax=cax, orientation='vertical');
     plt.show()
 
+
+    x = gdd[~np.isnan(gdd)]
+    y = mat[~np.isnan(mat)]
+    (r,p) = pearsonr(x,y)
+    print(r, p)
 
 if __name__ == "__main__":
 

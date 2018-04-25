@@ -54,7 +54,7 @@ def main(input_dir):
     cax = divider.append_axes('right', size='5%', pad=0.05)
     fig.colorbar(im1, cax=cax, orientation='vertical')
 
-    ax2.set_title("MAP")
+    ax2.set_title("MAT")
     im2 = ax2.imshow(map, interpolation='None')
     divider = make_axes_locatable(ax2)
     cax = divider.append_axes('right', size='5%', pad=0.05)

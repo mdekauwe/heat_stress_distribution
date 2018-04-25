@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-Plot correlation between gdd and map
+Plot correlation between gdd and mat
 """
 
 __author__ = "Martin De Kauwe"
@@ -47,7 +47,7 @@ def main(input_dir):
     ax1 = fig.add_subplot(111)
 
     x = gdd[~np.isnan(gdd)]
-    y = map[~np.isnan(map)]
+    y = mat[~np.isnan(mat)]
     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
 
 

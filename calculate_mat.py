@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-Figure out the MAP
+Figure out the MAT
 """
 
 __author__ = "Martin De Kauwe"
@@ -25,21 +25,21 @@ def main(met_dir, odir, land_sea_fname):
     nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83
-    map = np.zeros((nrows,ncols))
+    mat = np.zeros((nrows,ncols))
 
     yr_cnt = 0
     for year in range(st_yr, en_yr+1):
         print(year)
-        fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrMap.%d.nc" % (year))
+        fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrmat.%d.nc" % (year))
         tair, time_steps = open_file(fname)
-        map += tair.mean(axis=0)
+        mat += tair.mean(axis=0)
         yr_cnt += 1
 
-    map /= float(yr_cnt)
-    map = np.where(sea_mask == 0, map, -999.9)
+    mat /= float(yr_cnt)
+    mat = np.where(sea_mask == 0, mat, -999.9)
 
-    ofile = open(os.path.join(odir, "map.bin"), "w")
-    map.tofile(ofile)
+    ofile = open(os.path.join(odir, "mat.bin"), "w")
+    mat.tofile(ofile)
 
 def get_land_sea_mask(fname):
     nrows = 67

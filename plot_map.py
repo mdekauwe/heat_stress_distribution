@@ -23,8 +23,7 @@ def main(input_dir):
     ncols = 83
 
     fname = os.path.join(input_dir, "map.bin")
-    tmax = np.fromfile(fname, dtype=np.float64).reshape(nrows, ncols)
-
+    map = np.fromfile(fname, dtype=np.float64).reshape(nrows, ncols)
     map = np.where(map < -900.0, np.nan, map)
 
     width = 9

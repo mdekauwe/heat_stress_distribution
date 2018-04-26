@@ -59,7 +59,7 @@ def main(input_dir):
 
 
     x = mat[~np.isnan(mat)]
-    y = tmax[~np.isnan(gdd)]
+    y = gdd[~np.isnan(gdd)]
     slope, intercept, r_value, p_value, std_err = linregress(x,y)
 
     ax1.plot(x, y, "k.", alpha=0.1)
@@ -68,7 +68,7 @@ def main(input_dir):
     ax1.set_ylabel("GDD")
 
     x = mat[~np.isnan(map)]
-    y = tmax[~np.isnan(gdd)]
+    y = gdd[~np.isnan(gdd)]
     slope, intercept, r_value, p_value, std_err = linregress(x,y)
 
     ax1.plot(x, y, "k.", alpha=0.1)

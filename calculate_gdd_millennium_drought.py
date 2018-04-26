@@ -29,6 +29,7 @@ def main(met_dir, odir, land_sea_fname):
     ncols = 83
     gdd = np.zeros((nrows,ncols))
 
+    yr_cnt = 0
     for year in range(st_yr, en_yr+1):
         print(year)
 
@@ -40,9 +41,11 @@ def main(met_dir, odir, land_sea_fname):
             tmax = tair[i:i+8,:,:].max(axis=0)
             gdd += np.where(tmax > theshold, tmax - theshold, 0.0)
 
+        yr_cnt += 1
+    gdd /= float(yr_cnt)
     gdd = np.where(sea_mask == 0, gdd, -999.9)
 
-    ofile = open(os.path.join(odir, "total_gdd_1996_2010.bin"), "w")
+    ofile = open(os.path.join(odir, "gdd_1996_2010.bin"), "w")
     gdd.tofile(ofile)
 
 def get_land_sea_mask(fname):

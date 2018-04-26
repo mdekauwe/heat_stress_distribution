@@ -25,7 +25,7 @@ def main(met_dir, odir, land_sea_fname):
     nyears = (en_yr - st_yr) + 1
     nrows = 67
     ncols = 83
-    mat = np.zeros((nrows,ncols))
+    map = np.zeros((nrows,ncols))
 
     yr_cnt = 0
     for year in range(st_yr, en_yr+1):
@@ -68,7 +68,7 @@ def open_file(fname, var="Rainf"):
 
 if __name__ == "__main__":
 
-    met_dir = "/Users/mdekauwe/Desktop/Tair"
+    met_dir = "/Users/mdekauwe/Desktop/Rain"
     #met_dir = "/g/data1/wd9/MetForcing/Global/GSWP3_2017/Tair"
 
     land_sea_fname = "gswp3_land_sea/australia_gswp3_land_sea_mask.bin"

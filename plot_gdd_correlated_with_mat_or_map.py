@@ -67,14 +67,14 @@ def main(input_dir):
     ax1.set_xlabel("MAT")
     ax1.set_ylabel("GDD")
 
-    x = mat[~np.isnan(map)]
+    x = map[~np.isnan(map)]
     y = gdd[~np.isnan(gdd)]
     slope, intercept, r_value, p_value, std_err = linregress(x,y)
 
-    ax1.plot(x, y, "k.", alpha=0.1)
-    ax1.plot(x, intercept+(x*slope), "r-")
-    ax1.set_xlabel("MAP")
-    ax1.set_ylabel("GDD")
+    ax2.plot(x, y, "k.", alpha=0.1)
+    ax2.plot(x, intercept+(x*slope), "r-")
+    ax2.set_xlabel("MAP")
+    ax2.set_ylabel("GDD")
     plt.show()
 
 

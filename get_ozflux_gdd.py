@@ -28,37 +28,37 @@ def main(input_dir):
     site = "Calperum"
     row = 19
     col = 56
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Cumberland Plains"
     row = 20
     col = 76
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Gingin"
     row = 25
     col = 6
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Great Western Woodlands"
     row = 27
     col = 16
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Tumbarumba"
     row = 16
     col = 71
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Whroo"
     row = 14
     col = 65
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
     site = "Wombat"
     row = 13
     col = 63
-    print(site, gdd[row,col])
+    print(site, round(gdd[row,col],1))
 
 
 

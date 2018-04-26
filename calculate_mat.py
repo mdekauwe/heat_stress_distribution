@@ -30,7 +30,7 @@ def main(met_dir, odir, land_sea_fname):
     yr_cnt = 0
     for year in range(st_yr, en_yr+1):
         print(year)
-        fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrmat.%d.nc" % (year))
+        fname = os.path.join(met_dir, "GSWP3.BC.Tair.3hrMap.%d.nc" % (year))
         tair, time_steps = open_file(fname)
         mat += tair.mean(axis=0)
         yr_cnt += 1

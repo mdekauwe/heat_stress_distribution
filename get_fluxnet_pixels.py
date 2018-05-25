@@ -56,6 +56,14 @@ def main(met_dir, odir, land_sea_fname):
     lon_match = np.argwhere(data.lon.values == lon)[0][0]
     print(site, row, col)
 
+    site = "Puechabon"
+    lat = 43.75
+    lon = 3.75
+
+    row, col = get_rows_cols(data, lat, lon)
+    lon_match = np.argwhere(data.lon.values == lon)[0][0]
+    print(site, row, col)
+
     site = "Qianyanzhou"
     lat = 26.75
     lon = 115.25

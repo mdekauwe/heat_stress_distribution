@@ -46,6 +46,11 @@ def main(input_dir):
     col = 18
     print(site, round(gdd[row,col],1))
 
+    site = "Puechabon"
+    row = 267 
+    col = 7
+    print(site, round(gdd[row,col],1))
+
     site = "Qianyanzhou"
     row = 233
     col = 230
